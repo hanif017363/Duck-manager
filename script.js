@@ -1,11 +1,11 @@
-let tasks = [{ id: 1, text: "task1", status: true }];
+let tasks = [{ id: 1, text: "task1", status: "true" }];
 
 const parent = document.getElementById("parent");
 const form = document.getElementById("form");
 // it is basic ui
 function showLIst(domElement) {
   let html = "";
-  if (taskslength > 0) {
+  if (tasks.length > 0) {
     tasks.forEach((task) => {
       html += `  <div
             class="text-box group flex justify-between content-center shadow hover:shadow-lg"
@@ -26,18 +26,49 @@ function showLIst(domElement) {
             <div
               class="icon size-6 text-center m-4 invisible group-hover:visible transition-transform transform group-hover:scale-150 cursor-pointer"
             >
-              <i class="fa-solid fa-trash"></i>
+              <i onclick="removeTask(${task.id})" class="fa-solid fa-trash"></i>
             </div>
           </div>`;
     });
     domElement.innerHTML = html;
   } else {
-    domElement.innerHTML = `<p>no task found</p>`;
+    domElement.innerHTML = `<p class ="text-xl font-bold uppercase mx-4">no task found</p>`;
   }
 }
 
-function addTask() {
-  const task = form.target.type.value;
-  let taskList = [{ id: 1, text: task, status: true }];
+function addTask(event) {
+  const task = event.target.type.value;
+  let taskList = { id: idGenerate(tasks), text: task, status: false };
   tasks.push(taskList);
+}
+
+function idGenerate(taskArray) {
+  let init = 0;
+  taskArray.forEach((task) => {
+    if (task.id > init) {
+      init = task.id;
+    }
+  });
+  return init + 1;
+}
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  const output = event.target.type.value;
+  if (!output) {
+    window.alert("no input");
+  }
+  addTask(event);
+  showLIst(parent);
+  console.log(tasks);
+  event.target.reset();
+});
+
+showLIst(parent);
+
+function removeTask(taskId) {
+  tasks = tasks.filter((task) => {
+    return task.id !== taskId;
+  });
+  showLIst(parent);
 }
