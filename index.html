@@ -15,10 +15,14 @@
   <body class="bg-slate-300">
     <div class="container w-4/5 mx-auto max-w-screen-xl">
       <div class="my-20">
-        <form action="" class="flex justify-center">
-          <input class="w-60 h-9 rounded" type="text" />
+        <form id="form" action="" class="flex justify-center">
+          <input
+            name="type"
+            class="w-60 h-9 rounded border-2 border-black"
+            type="text"
+          />
           <button
-            class="text-lg capitalize font-semibold border-4 border-transparent bg-green-600 hover:bg-green-700 outline-none text-white rounded m-0"
+            class="cursor-pointer ms-2 text-lg capitalize font-semibold border-4 border-transparent bg-green-600 hover:bg-green-700 outline-none text-white rounded m-0 px-1"
             type="submit"
           >
             add task
@@ -26,17 +30,31 @@
         </form>
       </div>
       <!-- main box -->
-      <div class="main-box px-10 border-2 rounded border-black">
+      <div class="main-box px-10 border-2 rounded border-black bg-blue-100">
         <h1 class="text-center my-4 font-bold text-3xl capitalize">
           task manager
         </h1>
         <div
+          id="parent"
           class="box my-8 bg-white rounded border-4 border-black h-[660px] max-h-[660px] p-6"
         >
-          <div class="text-box">
-            <div class="text flex">
-              <div class="text-xl font-semibold">01</div>
-              <div class="text-xl mx-3 font-semibold">task 01</div>
+          <div
+            class="text-box group flex justify-between content-center shadow hover:shadow-lg"
+          >
+            <div class="text flex items-center">
+              <input
+                type="checkbox"
+                class="size-5 mx-5 cursor-pointer"
+                name="check-box"
+                id=""
+              />
+              <div class="px-5 text-xl font-semibold">1</div>
+              <div class="text-xl p-1 capitalize font-semibold">task 01</div>
+            </div>
+            <div
+              class="icon size-6 text-center m-4 invisible group-hover:visible transition-transform transform group-hover:scale-150 cursor-pointer"
+            >
+              <i class="fa-solid fa-trash"></i>
             </div>
           </div>
         </div>
@@ -44,5 +62,6 @@
     </div>
     <!-- script -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/script.js"></script>
   </body>
 </html>
