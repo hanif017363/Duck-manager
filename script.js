@@ -1,12 +1,15 @@
-let tasks = [{ id: 1, text: "task1", status: "false" }];
+let tasks = [{ id: 1, text: "task 1", status: "false" }];
 
 const parent = document.getElementById("parent");
 const form = document.getElementById("form");
+const countnum = document.getElementById("countNum");
+let statusName = "all";
 // it is basic ui
 function showLIst(domElement) {
   let html = "";
-  if (tasks.length > 0) {
-    tasks.forEach((task) => {
+  let filterTaskstatus = countStatus(statusName);
+  if (filterTaskstatus.length > 0) {
+    filterTaskstatus.forEach((task) => {
       html += `  <div
             class="text-box group flex justify-between content-center shadow hover:shadow-lg"
           >
@@ -35,10 +38,12 @@ function showLIst(domElement) {
   } else {
     domElement.innerHTML = `<p class ="text-xl font-bold uppercase mx-4">no task found</p>`;
   }
+  countnum.innerText = `${filterTaskstatus.length} Tasks`;
 }
 
 function addTask(event) {
   const task = event.target.type.value;
+  if (!task) return;
   let taskList = { id: idGenerate(tasks), text: task, status: "false" };
   tasks.push(taskList);
 }
@@ -58,6 +63,7 @@ form.addEventListener("submit", function (event) {
   const output = event.target.type.value;
   if (!output) {
     window.alert("no input");
+    return;
   }
   addTask(event);
   showLIst(parent);
@@ -87,4 +93,35 @@ function changeStatus(id) {
   });
   tasks = newTask;
   console.log(tasks);
+}
+
+function active(name, status) {
+  const all = document.getElementById("all");
+  const complete = document.getElementById("complete");
+  const incomplete = document.getElementById("incomplete");
+  statusName = name;
+  document.querySelector("#activeBar .activebtn").classList.remove("activebtn");
+  if (name === "all" && status === true) {
+    all.classList.add("activebtn");
+  }
+  if (name === "complete" && status === true) {
+    complete.classList.add("activebtn");
+  }
+  if (name === "incomplete" && status === true) {
+    incomplete.classList.add("activebtn");
+  }
+  showLIst(parent);
+}
+
+function countStatus(status) {
+  if (status === "all") {
+    return tasks;
+  }
+  if (status === "complete") {
+    return tasks.filter((task) => task.status === "true");
+  }
+  if (status === "incomplete") {
+    return tasks.filter((task) => task.status === "false");
+  }
+  showLIst(parent);
 }

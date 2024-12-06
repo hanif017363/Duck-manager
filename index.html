@@ -11,6 +11,13 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <style>
+      .activebtn {
+        border: 2px solid black !important;
+        background-color: #f0f0f0 !important;
+        color: black !important;
+      }
+    </style>
   </head>
   <body class="bg-slate-300">
     <div class="container w-4/5 mx-auto max-w-screen-xl">
@@ -34,9 +41,9 @@
         <h1 class="text-center my-4 font-bold text-3xl capitalize">my tasks</h1>
         <div
           id="parent"
-          class="box my-8 bg-white rounded border-4 border-black h-[660px] max-h-[660px] p-6"
+          class="overflow-scroll box my-8 bg-white rounded border-4 border-black h-[660px] max-h-[660px] p-6"
         >
-          <div
+          <!-- <div
             class="text-box group flex justify-between content-center shadow hover:shadow-lg"
           >
             <div class="text flex items-center">
@@ -54,21 +61,43 @@
             >
               <i class="fa-solid fa-trash"></i>
             </div>
+          </div> -->
+        </div>
+        <div class="flex justify-between my-6">
+          <div id="countNum" class="count text-lg mx-5 font-semibold">
+            0 <span>tasks</span>
           </div>
-          <div class="footer flex justify-between">
-            <div class="count">0</div>
-            <div class="chack-task">
-              <div class="button">
-                <button class="bg-green-600 sep]hr">all</button>
-                <button>completed</button>
-                <button>incomplete</button>
-              </div>
+          <div class="check-task">
+            <div class="button flex space-x-3" id="activeBar">
+              <button
+                id="all"
+                onclick="active('all',true)"
+                class="bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded activebtn"
+              >
+                All
+              </button>
+              <button
+                id="complete"
+                onclick="active('complete',true)"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded"
+              >
+                Completed
+              </button>
+              <button
+                id="incomplete"
+                onclick="active('incomplete',true)"
+                class="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded"
+              >
+                Incomplete
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
+
     <!-- script -->
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="/script.js"></script>
   </body>
