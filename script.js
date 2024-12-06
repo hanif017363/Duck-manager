@@ -1,4 +1,4 @@
-let tasks = [{ id: 1, text: "task1", status: "true" }];
+let tasks = [{ id: 1, text: "task1", status: "false" }];
 
 const parent = document.getElementById("parent");
 const form = document.getElementById("form");
@@ -12,6 +12,7 @@ function showLIst(domElement) {
           >
             <div class="text flex items-center">
               <input
+              onclick ="changeStatus(${task.id})"
                 type="checkbox"
                 class="size-5 mx-5 cursor-pointer"
                 name="check-box"
@@ -38,13 +39,13 @@ function showLIst(domElement) {
 
 function addTask(event) {
   const task = event.target.type.value;
-  let taskList = { id: idGenerate(tasks), text: task, status: false };
+  let taskList = { id: idGenerate(tasks), text: task, status: "false" };
   tasks.push(taskList);
 }
 
 function idGenerate(taskArray) {
   let init = 0;
-  taskArray.forEach((task) => {
+  taskArray.map((task) => {
     if (task.id > init) {
       init = task.id;
     }
@@ -71,4 +72,19 @@ function removeTask(taskId) {
     return task.id !== taskId;
   });
   showLIst(parent);
+}
+
+function changeStatus(id) {
+  let newTask = tasks.map((task) => {
+    if (task.id === id) {
+      return {
+        ...task,
+        status: task.status === "true" ? "false" : "true",
+      };
+    } else {
+      return task;
+    }
+  });
+  tasks = newTask;
+  console.log(tasks);
 }
