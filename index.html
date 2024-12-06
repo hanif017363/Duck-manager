@@ -20,17 +20,22 @@
     </style>
   </head>
   <body class="bg-slate-300">
-    <div class="container w-4/5 mx-auto max-w-screen-xl">
-      <div class="my-20">
+    <div class="container w-11/12 md:w-4/5 mx-auto md:max-w-screen-xl mt-4">
+      <img
+        class="size-full border rounded-full mx-auto"
+        src="/DALL·E 2024-12-04 19.20.28 - A minimalist logo design for a daily task management app called 'DuckManager.' The logo features a sleek, modern illustration of a duck integrated wit.webp"
+        alt=""
+      />
+      <div class="md:my-20 my-8">
         <form id="form" action="" class="flex justify-center">
           <input
             id="input"
             name="type"
-            class="w-60 h-9 rounded border-2 border-black"
+            class="h-9 w-44 md:w-60 rounded border-2 border-black"
             type="text"
           />
           <button
-            class="cursor-pointer ms-2 text-lg capitalize font-semibold border-4 border-transparent bg-green-600 hover:bg-green-700 outline-none text-white rounded m-0 px-1"
+            class="cursor-pointer ms-2 text-xs md:text-lg capitalize font-thin md:font-semibold border-4 border-transparent bg-green-600 hover:bg-green-700 outline-none text-white rounded m-0 px-1 md:px-6"
             type="submit"
           >
             add task
@@ -38,19 +43,25 @@
         </form>
       </div>
       <!-- main box -->
-      <div class="main-box px-10 border-2 rounded border-black bg-blue-100">
-        <h1 class="text-center my-4 font-bold text-3xl capitalize">my tasks</h1>
+      <div
+        class="main-box px-4 md:px-10 border-2 rounded border-black bg-blue-100"
+      >
+        <h1
+          class="text-center my-2 md:my-4 font-bold text-2xl md:text-3xl capitalize"
+        >
+          my tasks
+        </h1>
         <div
           id="parent"
-          class="overflow-scroll box my-8 bg-white rounded border-4 border-black h-[660px] max-h-[660px] p-6"
+          class="overflow-scroll box my-4 md:my-8 bg-white rounded border-black h-[560px] md:h-[660px] p-2 md:p-6"
         >
-          <!-- <div
+          <div
             class="text-box group flex justify-between content-center shadow hover:shadow-lg"
           >
             <div class="text flex items-center">
               <input
                 type="checkbox"
-                class="size-5 mx-5 cursor-pointer"
+                class="mx-5 cursor-pointer"
                 name="check-box"
                 id=""
               />
@@ -62,41 +73,54 @@
             >
               <i class="fa-solid fa-trash"></i>
             </div>
-          </div> -->
+          </div>
         </div>
-        <div class="flex justify-between my-6">
-          <div id="countNum" class="count text-lg mx-5 font-semibold">
-            0 <span>tasks</span>
+        <p id="para" onclick="remove('para',true)" class="text-red-600">
+          *click "completed" and "incompleted" buttons to view individual task*
+        </p>
+        <div class="flex justify-between my-2 md:my-6 content-center">
+          <div
+            id="countNum"
+            class="count text-sm md:text-lg md:mx-5 font-semibold"
+          >
+            0
           </div>
           <div class="check-task">
-            <div class="button flex space-x-3" id="activeBar">
+            <div class="button flex space-x-1 md:space-x-3" id="activeBar">
               <button
                 id="all"
                 onclick="active('all',true)"
-                class="bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded activebtn"
+                class="bg-green-600 hover:bg-green-700 text-white text-xs font-normal md:font-semibold px-2 md:px-4 md:py-2 rounded activebtn"
               >
                 All
               </button>
               <button
                 id="complete"
                 onclick="active('complete',true)"
-                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded"
+                class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-normal md:font-semibold px-2 md:px-4 md:py-2 rounded"
               >
                 Completed
               </button>
               <button
                 id="incomplete"
                 onclick="active('incomplete',true)"
-                class="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded"
+                class="bg-red-600 hover:bg-red-700 text-white text-xs font-normal md:font-semibold px-2 md:px-4 md:py-2 rounded"
               >
-                Incomplete
+                Incompleted
               </button>
             </div>
           </div>
         </div>
       </div>
     </div>
-
+    <footer
+      id="author"
+      onclick="remove('author',true)"
+      class="text-red-500 font-bold"
+    >
+      author: MD Hanif please cick here
+      <button class="py-2 px-1 bg-black">click me</button>
+    </footer>
     <!-- script -->
 
     <script src="https://cdn.tailwindcss.com"></script>
